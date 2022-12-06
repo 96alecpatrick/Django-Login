@@ -10,11 +10,12 @@ def login_view(request):
         password = request.POST.get("password")
         user = authenticate(username=username, password=password)
         login(user)
+        user.save()
     else: 
         if not user:
             context = {"Wrong username or password"}
             return render(request, "login.html", context)
-    return render(request, "login.html", {})
+    return redirect(request, "login.html", {})
     
 
 
