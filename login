@@ -13,7 +13,8 @@ def login_view(request):
         user.save()
     else: 
         if not user:
-            context = {"Wrong username or password"}
+            messages.error("Wrong Username or Password")
+            context = {username : "username", password: "password", user: "user"}
             return render(request, "login.html", context)
     return redirect(request, "login.html", {})
     
